@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="SieteMitosPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>controller.Compras</class>
+    <class>controller.Empleados</class>
+    <class>controller.Recursos</class>
+    <class>controller.Clientes</class>
+    <class>controller.DetalleCompra</class>
+    <class>controller.Categorias</class>
+    <class>controller.DetallesFacturas</class>
+    <class>controller.Productos</class>
+    <class>controller.Proveedores</class>
+    <class>controller.Facturas</class>
+    <class>model.Productos</class>
+    <class>model.Compras</class>
+    <class>model.Usuarios</class>
+    <class>model.Proveedores</class>
+    <class>model.Recursos</class>
+    <class>model.Clientes</class>
+    <class>model.DetalleCompra</class>
+    <class>model.DetallesFacturas</class>
+    <class>model.Empleados</class>
+    <class>model.Facturas</class>
+    <class>model.Categorias</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bar?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+    </properties>
+  </persistence-unit>
+</persistence>
