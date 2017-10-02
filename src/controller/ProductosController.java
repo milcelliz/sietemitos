@@ -9,6 +9,9 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
 import model.Productos;
+import model.ProductosRecursos;
+import model.ProductosRecursosPK;
+import model.Recursos;
 
 /**
  *
@@ -18,7 +21,7 @@ public class ProductosController {
     private static EntityManager em = PersistenceUtil.getEntityManager();
     
     public static List<Productos> listar(){
-        List<Productos> lista = em.createNamedQuery("Productos.findByBorrado", Productos.class).setParameter("borrado","NULL").getResultList();
+        List<Productos> lista = em.createNamedQuery("Productos.findByBorrado", Productos.class).getResultList();
         return lista;
     }
     public static Productos mostrar(int id){
@@ -49,6 +52,21 @@ public class ProductosController {
     }
     public static void borrar(Productos productos){
         borrar(productos.getId());
+    }
+    
+    public static void agregarRecurso(Recursos recurso, Productos producto, int cant){
+        ProductosRecursosPK prodRecClave = new ProductosRecursosPK();
+        prodRecClave.setProductosId(producto.getId());
+        prodRecClave.setRecursosId(recurso.getId());
+        
+        ProductosRecursos prodRec = new ProductosRecursos();
+        prodRec.setProductosRecursosPK(prodRecClave);
+        prodRec.setCantidad(cant);
+       
+        em.getTransaction().begin();
+        em.persist(prodRec);
+        em.getTransaction().commit();
+        
     }
     public static void crear(){
     }

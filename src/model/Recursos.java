@@ -43,6 +43,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Recursos.findByActualizado", query = "SELECT r FROM Recursos r WHERE r.actualizado = :actualizado")})
 public class Recursos implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recursos")
+    private Collection<ProductosRecursos> productosRecursosCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -173,6 +176,15 @@ public class Recursos implements Serializable {
     @Override
     public String toString() {
         return "model.Recursos[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<ProductosRecursos> getProductosRecursosCollection() {
+        return productosRecursosCollection;
+    }
+
+    public void setProductosRecursosCollection(Collection<ProductosRecursos> productosRecursosCollection) {
+        this.productosRecursosCollection = productosRecursosCollection;
     }
     
 }

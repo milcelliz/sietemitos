@@ -41,7 +41,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Empleados.findByRol", query = "SELECT e FROM Empleados e WHERE e.rol = :rol"),
     @NamedQuery(name = "Empleados.findByDireccion", query = "SELECT e FROM Empleados e WHERE e.direccion = :direccion"),
     @NamedQuery(name = "Empleados.findByTelefono", query = "SELECT e FROM Empleados e WHERE e.telefono = :telefono"),
-    @NamedQuery(name = "Empleados.findByBorrado", query = "SELECT e FROM Empleados e WHERE e.borrado = :borrado"),
+    @NamedQuery(name = "Empleados.findActivos", query = "SELECT e FROM Empleados e WHERE e.borrado = NULL"),
+    @NamedQuery(name = "Empleados.findNotActivos", query = "SELECT e FROM Empleados e WHERE e.borrado != NULL"),
     @NamedQuery(name = "Empleados.findByCreado", query = "SELECT e FROM Empleados e WHERE e.creado = :creado"),
     @NamedQuery(name = "Empleados.findByActualizado", query = "SELECT e FROM Empleados e WHERE e.actualizado = :actualizado")})
 public class Empleados implements Serializable {

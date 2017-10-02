@@ -20,7 +20,7 @@ public class EmpleadoController {
     private static EntityManager em = PersistenceUtil.getEntityManager();
     
     public static List<Empleados> listar(){
-        List<Empleados> lista = em.createNamedQuery("Empleados.findByBorrado", Empleados.class).setParameter("borrado","NULL").getResultList();
+        List<Empleados> lista = em.createNamedQuery("Empleados.findActivos", Empleados.class).getResultList();
         return lista;
     }
     public static Empleados mostrar(int id){

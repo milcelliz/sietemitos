@@ -6,6 +6,7 @@
 package controller;
 
 import java.util.prefs.Preferences;
+import model.Clientes;
 import model.Empleados;
 
 /**
@@ -28,5 +29,32 @@ public class Cache {
         return empleado;
     }
     
+    static void setCliente(Integer clienteId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public static void setUsuario2(int id){
+        Preferences prefs = Preferences.userNodeForPackage(controller.Cache.class);
+        prefs.putInt("cliente", id);
+    }
+    public static Clientes getClientes(){
+        Preferences prefs = Preferences.userNodeForPackage(controller.Cache.class);
+        int id = prefs.getInt("usuario", 0);
+        Clientes cliente = ClienteController.mostrar(id);
+        return cliente;
+    }
+    
+    static void setProveedores(Integer proveedorId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public static void setUsuario3(int id){
+        Preferences prefs = Preferences.userNodeForPackage(controller.Cache.class);
+        prefs.putInt("cliente", id);
+    }
+    public static Clientes getProveedores(){
+        Preferences prefs = Preferences.userNodeForPackage(controller.Cache.class);
+        int id = prefs.getInt("usuario", 0);
+        Clientes cliente = ClienteController.mostrar(id);
+        return cliente;
+    }
     
 }

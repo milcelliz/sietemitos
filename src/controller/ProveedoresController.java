@@ -18,7 +18,7 @@ public class ProveedoresController {
     private static EntityManager em = PersistenceUtil.getEntityManager();
     
     public static List<Proveedores> listar(){
-        List<Proveedores> lista = em.createNamedQuery("Proveedores.findByBorrado", Proveedores.class).setParameter("borrado","NULL").getResultList();
+        List<Proveedores> lista = em.createNamedQuery("Proveedores.findActivos", Proveedores.class).getResultList();
         return lista;
     }
     public static Proveedores mostrar(int id){

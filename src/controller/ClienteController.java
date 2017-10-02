@@ -18,7 +18,7 @@ public class ClienteController {
     private static EntityManager em = PersistenceUtil.getEntityManager();
     
     public static List<Clientes> listar(){
-        List<Clientes> lista = em.createNamedQuery("Clientes.findByBorrado", Clientes.class).setParameter("borrado", "NULL").getResultList();
+        List<Clientes> lista = em.createNamedQuery("Clientes.findActivos", Clientes.class).getResultList();
         return lista;
     }
     public static Clientes mostrar(int id){

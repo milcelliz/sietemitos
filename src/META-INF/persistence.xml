@@ -23,6 +23,7 @@
     <class>model.Empleados</class>
     <class>model.Facturas</class>
     <class>model.Categorias</class>
+    <class>model.ProductosRecursos</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bar?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

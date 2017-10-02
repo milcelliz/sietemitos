@@ -5,6 +5,12 @@
  */
 package sietemitos;
 
+import controller.PersistenceUtil;
+import controller.ProductosController;
+import controller.RecursosController;
+import javax.persistence.EntityManager;
+import model.ProductosRecursos;
+import model.ProductosRecursosPK;
 import view.InicioVista;
 
 /**
@@ -21,6 +27,8 @@ public class SieteMitos {
         java.awt.EventQueue.invokeLater(() -> {
             new InicioVista().setVisible(true);
         });
+        
+        
     }
 
     public static void dispose() {

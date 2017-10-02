@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.awt.Component;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -21,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.swing.JOptionPane;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -35,6 +37,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Proveedores.findAll", query = "SELECT p FROM Proveedores p"),
     @NamedQuery(name = "Proveedores.findById", query = "SELECT p FROM Proveedores p WHERE p.id = :id"),
     @NamedQuery(name = "Proveedores.findByNombre", query = "SELECT p FROM Proveedores p WHERE p.nombre = :nombre"),
+    @NamedQuery(name = "Proveedores.findActivos", query = "SELECT e FROM Proveedores e WHERE e.borrado = NULL"),
+    @NamedQuery(name = "Proveedores.findNotActivos", query = "SELECT e FROM Proveedores e WHERE e.borrado != NULL"),
+    
+    
     @NamedQuery(name = "Proveedores.findByTelefono", query = "SELECT p FROM Proveedores p WHERE p.telefono = :telefono"),
     @NamedQuery(name = "Proveedores.findByDireccion", query = "SELECT p FROM Proveedores p WHERE p.direccion = :direccion"),
     @NamedQuery(name = "Proveedores.findByCreado", query = "SELECT p FROM Proveedores p WHERE p.creado = :creado"),
@@ -173,5 +179,16 @@ public class Proveedores implements Serializable {
     public String toString() {
         return "model.Proveedores[ id=" + id + " ]";
     }
-    
+      public boolean validar(Component comp) {
+        try{
+            Integer.parseInt(telefono);
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(comp, "El telefono debe contener solo datos numericos.");
+            return false;
+        }
+        if (ruc.equals("") && nombre.equals("")&& direccion.equals("")&& telefono.equals("") ){
+            JOptionPane.showMessageDialog(comp, "Los campos no deben estar vacios");
+        }
+        return true;
+      }
 }

@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.awt.Component;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -23,6 +24,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.swing.JOptionPane;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -38,10 +40,17 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Productos.findById", query = "SELECT p FROM Productos p WHERE p.id = :id"),
     @NamedQuery(name = "Productos.findByNombre", query = "SELECT p FROM Productos p WHERE p.nombre = :nombre"),
     @NamedQuery(name = "Productos.findByPrecio", query = "SELECT p FROM Productos p WHERE p.precio = :precio"),
+    @NamedQuery(name = "Productos.findActivos", query = "SELECT e FROM Productos e WHERE e.borrado = NULL"),
+    @NamedQuery(name = "Productos.findNotActivos", query = "SELECT e FROM Productos e WHERE e.borrado != NULL"),
+    
+    
     @NamedQuery(name = "Productos.findByCreado", query = "SELECT p FROM Productos p WHERE p.creado = :creado"),
     @NamedQuery(name = "Productos.findByActualizado", query = "SELECT p FROM Productos p WHERE p.actualizado = :actualizado"),
     @NamedQuery(name = "Productos.findByBorrado", query = "SELECT p FROM Productos p WHERE p.borrado = :borrado")})
 public class Productos implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productos")
+    private Collection<ProductosRecursos> productosRecursosCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -177,5 +186,28 @@ public class Productos implements Serializable {
     public String toString() {
         return "model.Productos[ id=" + id + " ]";
     }
+
+    @XmlTransient
+    public Collection<ProductosRecursos> getProductosRecursosCollection() {
+        return productosRecursosCollection;
+    }
+
+    public void setProductosRecursosCollection(Collection<ProductosRecursos> productosRecursosCollection) {
+        this.productosRecursosCollection = productosRecursosCollection;
+    }
+      public boolean validar(Component comp) {
+        
+        if(precio < 0) {
+            JOptionPane.showMessageDialog(comp, "El precio debe ser mayor a 0.");
+        }
+        
+        if (categoriasId.equals("") && nombre.equals("")&& precio.equals("")){
+            JOptionPane.showMessageDialog(comp, "Los campos no deben estar vacios");
+        }
+        return true;
+      }
+    
+         
+
     
 }
